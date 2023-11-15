@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
 		paddingRight: 10,
 		fontSize: 14,
 		lineHeight: 20,
-		fontWeight: 400,
+		fontWeight: '400',
 	},
 	inputFocus: {
 		borderColor: "rgb(53, 209, 245)",
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 5,
 		fontSize: 13,
 		lineHeight: 20,
-		fontWeight: 400,
+		fontWeight: '400',
 		color: "#4F4A45",
 	},
 	button: {
