@@ -1,5 +1,6 @@
 import {
 	KeyboardAvoidingView,
+	Platform,
 	SafeAreaView,
 	StyleSheet,
 	TouchableWithoutFeedback,
@@ -60,7 +61,7 @@ const ScreenSearch = () => {
 
 	return (
 		<TouchableWithoutFeedback>
-			<SafeAreaView>
+			<SafeAreaView style={styles.androidSafeViewArea}>
 				<KeyboardAvoidingView
 					behavior={Platform.OS === "ios" ? "padding" : "height"}
 					style={styles.container}
@@ -87,6 +88,9 @@ const styles = StyleSheet.create({
 	container: {
 		width: "100%",
 		height: "100%",
+	},
+	androidSafeViewArea: {
+		paddingTop: Platform.OS === "android" ? 25 : 0,
 	},
 	listUsers: {
 		paddingLeft: 15,

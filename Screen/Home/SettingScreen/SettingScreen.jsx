@@ -1,4 +1,5 @@
 import {
+	Platform,
 	SafeAreaView,
 	StyleSheet,
 	Text,
@@ -53,7 +54,7 @@ const SettingScreen = () => {
 	};
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={styles.androidSafeViewArea}>
 			<View style={styles.container}>
 				<Spinner
 					visible={loading}
@@ -101,6 +102,9 @@ const styles = StyleSheet.create({
 		height: "100%",
 		paddingLeft: 15,
 		paddingRight: 15,
+	},
+	androidSafeViewArea: {
+		paddingTop: Platform.OS === "android" ? 25 : 0,
 	},
 	profile: {
 		flexDirection: "column",

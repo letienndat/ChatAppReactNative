@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import HeaderHomeChat from "./HeaderHomeChat";
 import BodyHomeChat from "./BodyHomeChat";
 import { useEffect, useState } from "react";
@@ -48,7 +48,7 @@ const HomeScreen = () => {
 	}, []);
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={styles.androidSafeViewArea}>
 			<View style={styles.container}>
 				<Spinner
 					visible={loading}
@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: "100%",
 		backgroundColor: "#fff",
+	},
+	androidSafeViewArea: {
+		paddingTop: Platform.OS === "android" ? 25 : 0,
 	},
 });
 

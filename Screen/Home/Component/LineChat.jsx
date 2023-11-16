@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 13,
 		paddingBottom: 11,
 		paddingRight: 13,
-		borderRadius: "20%",
+		borderRadius: 20,
 	},
 	lineChatMe: {
 		backgroundColor: "#F1EFEF",

@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 	avatar: {
 		width: 40,
 		height: 40,
-		borderRadius: "50%",
+		borderRadius: 20,
 		backgroundColor: "#333",
 		flexDirection: "row",
 		alignItems: "center",
