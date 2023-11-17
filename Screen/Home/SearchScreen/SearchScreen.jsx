@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 		height: "100%",
 	},
 	androidSafeViewArea: {
-		paddingTop: Platform.OS === "android" ? 25 : 0,
+		paddingTop: Platform.OS === "android" ? 40 : 0,
 	},
 	listUsers: {
 		paddingLeft: 15,

@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 		paddingRight: 15,
 	},
 	androidSafeViewArea: {
-		paddingTop: Platform.OS === "android" ? 25 : 0,
+		paddingTop: Platform.OS === "android" ? 35 : 0,
 	},
 	profile: {
 		flexDirection: "column",
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 	avatar: {
 		width: 100,
 		height: 100,
-		borderRadius: "50%",
+		borderRadius: 50,
 		backgroundColor: "#8EACCD",
 		flexDirection: "row",
 		justifyContent: "center",

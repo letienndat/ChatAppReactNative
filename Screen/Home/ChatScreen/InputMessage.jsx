@@ -119,7 +119,6 @@ const InputMessage = ({ setMessages, data }) => {
 				value={message}
 				onChangeText={handleChangeMessage}
 				multiline={true}
-				numberOfLines={4}
 				placeholder="Nhắn tin..."
 				placeholderTextColor={"#7D7C7C"}
 			/>
