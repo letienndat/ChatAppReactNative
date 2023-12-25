@@ -43,9 +43,7 @@ const HeaderChat = ({ data }) => {
 			</TouchableOpacity>
 			<View style={styles.headerRight}>
 				<View style={styles.avatar}>
-					<Text style={styles.innerAvatar}>
-						{getCharFromName(user.name)}
-					</Text>
+					<Text style={styles.innerAvatar}>{getCharFromName(user.name)}</Text>
 				</View>
 				<View style={styles.nameAndStatus}>
 					<Text style={styles.name}>{user.name}</Text>

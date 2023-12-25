@@ -151,10 +151,7 @@ export default function SignUp() {
 			isName(inputFullName.current),
 			isUsername(inputUsername.current),
 			isPassword(inputPassword.current),
-			isConfirmPassword(
-				inputPassword.current,
-				inputConfirmPassword.current
-			),
+			isConfirmPassword(inputPassword.current, inputConfirmPassword.current),
 		];
 
 		const resCheck = Validate({ roles });
@@ -260,10 +257,7 @@ export default function SignUp() {
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 		>
-			<TouchableWithoutFeedback
-				onPress={Keyboard.dismiss}
-				accessible={false}
-			>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 				<ScrollView>
 					<View style={styles.container}>
 						<Image style={styles.image} source={backgroundSignup} />
@@ -273,8 +267,7 @@ export default function SignUp() {
 									style={[
 										styles.input,
 										inputFullNameFocus && styles.inputFocus,
-										inputFullNameInvalid &&
-											styles.inputInvalid,
+										inputFullNameInvalid && styles.inputInvalid,
 									]}
 									ref={inputFullName}
 									value={fullName}
@@ -285,17 +278,14 @@ export default function SignUp() {
 									onFocus={handleFocusFullName}
 									onBlur={handleBlurFullName}
 								/>
-								<Text style={styles.notifyInput}>
-									{notifyFullName}
-								</Text>
+								<Text style={styles.notifyInput}>{notifyFullName}</Text>
 							</View>
 							<View>
 								<TextInput
 									style={[
 										styles.input,
 										inputUsernameFocus && styles.inputFocus,
-										inputUsernameInvalid &&
-											styles.inputInvalid,
+										inputUsernameInvalid && styles.inputInvalid,
 									]}
 									ref={inputUsername}
 									value={username}
@@ -306,17 +296,14 @@ export default function SignUp() {
 									onFocus={handleFocusUsername}
 									onBlur={handleBlurUsername}
 								/>
-								<Text style={styles.notifyInput}>
-									{notifyUsername}
-								</Text>
+								<Text style={styles.notifyInput}>{notifyUsername}</Text>
 							</View>
 							<View>
 								<TextInput
 									style={[
 										styles.input,
 										inputPasswordFocus && styles.inputFocus,
-										inputPasswordInvalid &&
-											styles.inputInvalid,
+										inputPasswordInvalid && styles.inputInvalid,
 									]}
 									ref={inputPassword}
 									value={password}
@@ -327,33 +314,25 @@ export default function SignUp() {
 									onFocus={handleFocusPassword}
 									onBlur={handleBlurPassword}
 								/>
-								<Text style={styles.notifyInput}>
-									{notifyPassword}
-								</Text>
+								<Text style={styles.notifyInput}>{notifyPassword}</Text>
 							</View>
 							<View>
 								<TextInput
 									style={[
 										styles.input,
-										inputConfirmPasswordFocus &&
-											styles.inputFocus,
-										inputConfirmPasswordInvalid &&
-											styles.inputInvalid,
+										inputConfirmPasswordFocus && styles.inputFocus,
+										inputConfirmPasswordInvalid && styles.inputInvalid,
 									]}
 									ref={inputConfirmPassword}
 									value={confirmPassword}
-									onChangeText={
-										handleChangeTextConfirmPassword
-									}
+									onChangeText={handleChangeTextConfirmPassword}
 									placeholder="Nhập lại mật khẩu"
 									keyboardType="default"
 									secureTextEntry={true}
 									onFocus={handleFocusConfirmPassword}
 									onBlur={handleBlurConfirmPassword}
 								/>
-								<Text style={styles.notifyInput}>
-									{notifyConfirmPassword}
-								</Text>
+								<Text style={styles.notifyInput}>{notifyConfirmPassword}</Text>
 							</View>
 						</View>
 						<View>{notifyForm && <Text>{notifyForm}</Text>}</View>
@@ -365,10 +344,7 @@ export default function SignUp() {
 						</TouchableOpacity>
 						<View style={styles.viewOption}>
 							<Text>Đã có tài khoản?</Text>
-							<Text
-								style={styles.option}
-								onPress={handleClickOption}
-							>
+							<Text style={styles.option} onPress={handleClickOption}>
 								Đăng nhập
 							</Text>
 						</View>
@@ -414,7 +390,7 @@ const styles = StyleSheet.create({
 		paddingRight: 10,
 		fontSize: 14,
 		lineHeight: 20,
-		fontWeight: '400',
+		fontWeight: "400",
 	},
 	inputFocus: {
 		borderColor: "rgb(53, 209, 245)",
@@ -427,7 +403,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 5,
 		fontSize: 13,
 		lineHeight: 20,
-		fontWeight: '400',
+		fontWeight: "400",
 		color: "#4F4A45",
 	},
 	button: {

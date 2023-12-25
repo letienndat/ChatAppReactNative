@@ -43,14 +43,14 @@ const SettingScreen = () => {
 				}
 			})
 			.catch(async (err) => {
-				setIsLogin(!1)
-				await clear()
+				setIsLogin(!1);
+				await clear();
 			});
 	}, []);
 
 	const handleSignOut = async () => {
 		setIsLogin(!1);
-		await clear()
+		await clear();
 	};
 
 	return (
@@ -73,19 +73,12 @@ const SettingScreen = () => {
 									{getCharFromName(data.name)}
 								</Text>
 							</View>
-							<Text
-								style={styles.username}
-							>{`@${data.username}`}</Text>
+							<Text style={styles.username}>{`@${data.username}`}</Text>
 							<Text style={styles.name}>{data.name}</Text>
 						</View>
 						<View style={styles.options}>
-							<TouchableOpacity
-								style={styles.option}
-								onPress={handleSignOut}
-							>
-								<Text style={styles.valueOption}>
-									Đăng xuất
-								</Text>
+							<TouchableOpacity style={styles.option} onPress={handleSignOut}>
+								<Text style={styles.valueOption}>Đăng xuất</Text>
 							</TouchableOpacity>
 						</View>
 					</>

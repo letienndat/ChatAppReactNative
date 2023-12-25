@@ -1,4 +1,4 @@
-# ChatApp (Updating)
+# ChatApp Frontend
 ChatApp using ReactNative (Updating)
 
 ## Required

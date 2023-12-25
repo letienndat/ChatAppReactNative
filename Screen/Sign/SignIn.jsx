@@ -33,7 +33,7 @@ export default function SignIn() {
 	const nav = useNavigation();
 	const route = useRoute();
 
-	const {setIsLogin} = useAuth()
+	const { setIsLogin } = useAuth();
 
 	useEffect(() => {
 		setUsername(route.params?.username);
@@ -128,9 +128,9 @@ export default function SignIn() {
 						setNotifyPassword("");
 						setNotifyForm(undefined);
 
-						save('u', username)
-						save('p', password)
-						save('i', `${res.data.valueMessage.id}`)
+						save("u", username);
+						save("p", password);
+						save("i", `${res.data.valueMessage.id}`);
 
 						setIsLogin(!0);
 					} else if (res.status !== 200) {
@@ -169,10 +169,7 @@ export default function SignIn() {
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 		>
-			<TouchableWithoutFeedback
-				onPress={Keyboard.dismiss}
-				accessible={false}
-			>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 				<View style={styles.container}>
 					<Image style={styles.image} source={backgroundSignin} />
 					<View style={styles.sign}>
@@ -192,9 +189,7 @@ export default function SignIn() {
 								onFocus={handleFocusUsername}
 								onBlur={handleBlurUsername}
 							/>
-							<Text style={styles.notifyInput}>
-								{notifyUsername}
-							</Text>
+							<Text style={styles.notifyInput}>{notifyUsername}</Text>
 						</View>
 						<View>
 							<TextInput
@@ -212,16 +207,11 @@ export default function SignIn() {
 								onFocus={handleFocusPassword}
 								onBlur={handleBlurPassword}
 							/>
-							<Text style={styles.notifyInput}>
-								{notifyPassword}
-							</Text>
+							<Text style={styles.notifyInput}>{notifyPassword}</Text>
 						</View>
 					</View>
 					<View>{notifyForm && <Text>{notifyForm}</Text>}</View>
-					<TouchableOpacity
-						style={styles.button}
-						onPress={handleSubmitButton}
-					>
+					<TouchableOpacity style={styles.button} onPress={handleSubmitButton}>
 						<Text style={styles.textButton}>Đăng nhập</Text>
 					</TouchableOpacity>
 					<View style={styles.viewOption}>
@@ -271,7 +261,7 @@ const styles = StyleSheet.create({
 		paddingRight: 10,
 		fontSize: 14,
 		lineHeight: 20,
-		fontWeight: '400',
+		fontWeight: "400",
 	},
 	inputFocus: {
 		borderColor: "rgb(53, 209, 245)",
@@ -284,7 +274,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 5,
 		fontSize: 13,
 		lineHeight: 20,
-		fontWeight: '400',
+		fontWeight: "400",
 		color: "#4F4A45",
 	},
 	button: {

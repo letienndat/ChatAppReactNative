@@ -1,7 +1,6 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useEffect, useState } from "react";
-import { API_URL } from "@env";
 import {
 	Dimensions,
 	StyleSheet,
@@ -12,6 +11,9 @@ import {
 import { encode } from "base-64";
 import { load } from "../../../lib/async_storage/async_storage";
 import { TextEncoder, TextDecoder } from "text-encoding";
+import { baseURL } from "../../../lib/const";
+import axios from "../../../lib/axios/axios-config";
+import RSA from "../../../lib/rsa/lib";
 const StompJs = require("@stomp/stompjs");
 
 const InputMessage = ({ setMessages, data }) => {
@@ -23,6 +25,8 @@ const InputMessage = ({ setMessages, data }) => {
 	const [u, setU] = useState("");
 	const [p, setP] = useState("");
 	const [i, setI] = useState("");
+	const [pk, setPK] = useState("");
+	const rsa = new RSA();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -35,6 +39,9 @@ const InputMessage = ({ setMessages, data }) => {
 
 				const resI = await load("i");
 				setI(resI);
+
+				const resPK = await load("pk");
+				setPK(resPK);
 			} catch (error) {
 				console.error("Có lỗi khi truy cập AsyncStorage:", error);
 			}
@@ -45,20 +52,23 @@ const InputMessage = ({ setMessages, data }) => {
 
 	useEffect(() => {
 		const stompClient = new StompJs.Client({
-			brokerURL: `wss://${API_URL.substr(8)}/ws`,
+			brokerURL: `ws://${baseURL.substring(7)}/ws`,
 		});
 
 		stompClient.onConnect = (frame) => {
 			console.log("Connected: " + frame);
 			stompClient.subscribe(`/topic/messages/${data?.id}`, (greeting) => {
 				const { idUserCreated, value } = JSON.parse(greeting.body);
-				setMessages((prev) => [
-					...prev,
-					{
-						isMe: idUserCreated === parseInt(i),
-						value: value,
-					},
-				]);
+				if (idUserCreated !== parseInt(i)) {
+					const [d, n] = pk.split("x").map((e) => parseInt(e));
+					setMessages((prev) => [
+						...prev,
+						{
+							isMe: idUserCreated === parseInt(i),
+							value: rsa.decrypt(value, d, n),
+						},
+					]);
+				}
 			});
 		};
 
@@ -93,18 +103,64 @@ const InputMessage = ({ setMessages, data }) => {
 		}
 	};
 
-	const sendMessage = () => {
-		if (connection && message.trim()) {
-			connection.publish({
-				destination: `/chat/${data.id}`,
-				body: JSON.stringify({
-					idRoom: data.id,
-					text: message,
-					auth: `Basic ${encode(`${u}:${p}`)}`,
-				}),
-			});
+	const getPublicKey = async (point) => {
+		const u = await load("u");
+		const p = await load("p");
+		const idRoom = await load("r_id");
+		const idUser = await load("i");
 
-			setMessage("");
+		return axios.post(
+			`${point}`,
+			{
+				idRoom,
+				idUser,
+			},
+			{
+				headers: {
+					Authorization: `Basic ${encode(`${u}:${p}`)}`,
+				},
+			}
+		);
+	};
+
+	const sendMessage = async () => {
+		if (connection && message.trim()) {
+			const _data = {
+				idRoom: data.id,
+				text: undefined,
+				auth: `Basic ${encode(`${u}:${p}`)}`,
+			};
+
+			try {
+				const response = await getPublicKey("/api/public-key/get");
+
+				if (response.status === 200) {
+					console.log(response.data.valueMessage);
+					const [e, n] = response.data.valueMessage.publicKeyOther
+						.split("x")
+						.map((e) => parseInt(e));
+					_data.text = rsa.encrypt(message, e, n);
+				} else {
+					console.log("Có lỗi khi truy cập tới hệ thống!");
+				}
+
+				connection.publish({
+					destination: `/chat/${data.id}`,
+					body: JSON.stringify(_data),
+				});
+
+				setMessages((prev) => [
+					...prev,
+					{
+						isMe: !0,
+						value: message,
+					},
+				]);
+
+				setMessage("");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	};
 
@@ -125,11 +181,7 @@ const InputMessage = ({ setMessages, data }) => {
 			{existsValueMessage && (
 				<View style={styles.viewSend}>
 					<TouchableOpacity style={styles.send} onPress={sendMessage}>
-						<FontAwesomeIcon
-							icon={faPaperPlane}
-							size={18}
-							color="#fff"
-						/>
+						<FontAwesomeIcon icon={faPaperPlane} size={18} color="#fff" />
 					</TouchableOpacity>
 				</View>
 			)}

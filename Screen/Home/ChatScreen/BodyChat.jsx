@@ -24,7 +24,9 @@ const BodyChat = ({ data }) => {
 				console.log(err);
 			});
 		if (data) {
-			setMessages(cv(data.lineChats));
+			if (data.lineChats !== null) {
+				setMessages(cv(data.lineChats));
+			}
 		}
 	}, [data, id]);
 

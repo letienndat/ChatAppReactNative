@@ -33,9 +33,7 @@ const ScreenSearch = () => {
 
 	useEffect(() => {
 		if (valueSearch.trim() !== "") {
-			const response = sendRequest(
-				`/api/home/search?keyword=${valueSearch}`
-			);
+			const response = sendRequest(`/api/home/search?keyword=${valueSearch}`);
 
 			response
 				.then((res) => {

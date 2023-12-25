@@ -14,13 +14,12 @@ const ListChat = ({ title, data, type, existsValue }) => {
 			/>
 			{existsValue && (
 				<View style={styles.notifySearch}>
-					<Text>{`${
-						type === "h"
+					<Text>{`${type === "h"
 							? "Chưa có tin nhắn nào!"
 							: type === "s"
-							? "Không tồn tại kết quả"
-							: "Không có kết quả"
-					}`}</Text>
+								? "Không tồn tại kết quả"
+								: "Không có kết quả"
+						}`}</Text>
 				</View>
 			)}
 		</View>

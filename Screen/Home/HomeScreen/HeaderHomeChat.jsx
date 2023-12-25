@@ -14,11 +14,7 @@ const HeaderHomeChat = ({ name }) => {
 		<View style={styles.container}>
 			<Text style={styles.name}>{name}</Text>
 			<TouchableOpacity onPress={handlePressSetting}>
-				<FontAwesomeIcon
-					size={20}
-					style={styles.setting}
-					icon={faGear}
-				/>
+				<FontAwesomeIcon size={20} style={styles.setting} icon={faGear} />
 			</TouchableOpacity>
 		</View>
 	);

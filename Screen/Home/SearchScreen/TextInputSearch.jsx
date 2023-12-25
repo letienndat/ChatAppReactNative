@@ -53,9 +53,7 @@ const TextInputSearch = (props) => {
 
 	return (
 		<TouchableWithoutFeedback>
-			<View
-				style={[styles.container, { width: screenWidth - (15 + 15) }]}
-			>
+			<View style={[styles.container, { width: screenWidth - (15 + 15) }]}>
 				<View style={styles.boxInputSearch}>
 					<FontAwesomeIcon
 						style={styles.iconSearch}
@@ -76,18 +74,11 @@ const TextInputSearch = (props) => {
 							style={styles.iconClear}
 							onPress={handleClearInputSearch}
 						>
-							<FontAwesomeIcon
-								size={15}
-								color="#7D7C7C"
-								icon={faCircleXmark}
-							/>
+							<FontAwesomeIcon size={15} color="#7D7C7C" icon={faCircleXmark} />
 						</TouchableOpacity>
 					)}
 				</View>
-				<TouchableOpacity
-					style={styles.cancel}
-					onPress={handleCancelSearch}
-				>
+				<TouchableOpacity style={styles.cancel} onPress={handleCancelSearch}>
 					<Text>Hủy</Text>
 				</TouchableOpacity>
 			</View>

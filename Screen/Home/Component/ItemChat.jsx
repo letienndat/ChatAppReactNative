@@ -55,14 +55,9 @@ const ItemChat = ({ data, type }) => {
 	};
 
 	return (
-		<TouchableOpacity
-			style={styles.container}
-			onPress={handleClickItemChat}
-		>
+		<TouchableOpacity style={styles.container} onPress={handleClickItemChat}>
 			<View style={styles.avatar}>
-				<Text style={styles.innerAvatar}>
-					{getCharFromName(data.name)}
-				</Text>
+				<Text style={styles.innerAvatar}>{getCharFromName(data.name)}</Text>
 			</View>
 			<View style={styles.content}>
 				<Text
